@@ -28,7 +28,7 @@ $qq = $_POST["qq"];
 try {
     // $bmobUser = new BmobUser();
     // $res = $bmobUser->register(array("username" => "$schoolNum", "password" => "p_n7!-e8", "phone" => "415-392-0202", "email" => "bmobtest111@126.com"));
-    $bmobObj = new BmobObject("Acm");
+    $bmobObj = new BmobObject("Toy");
     $res = $bmobObj->create(array("name" => "$name", "schoolNum" => "$schoolNum", "class" => "$class", "tel" => "$tel", "qq" => "$qq")); //添加对象
     echo "<script> alert(\"报名成功\"); history.go(-1); </script>";
     var_dump($res);

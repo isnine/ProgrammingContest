@@ -1,17 +1,17 @@
 <?php
-	session_start();
-	if(!isset($_SESSION['judger'])){
-		header("Location:admin2014.php");
-		exit();
-	}
-	include_once("conn.php");
-	include_once("config.php");
+session_start();
+if (!isset($_SESSION['judger'])) {
+    header("Location:admin2014.php");
+    exit();
+}
+include_once "conn.php";
+include_once "config.php";
 ?>
 <!DOCTYPE html>
-<html> 
+<html>
 	<head>
 		<meta charset="utf-8">
-		<title>管理后台 - 2014纳新系统</title>
+		<title>管理后台 - 湖南工业大学校赛</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 			<div class="navbar navbar-fixed-top">
 				<div class="navbar-inner">
 					<div class="container">
-						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">Xiyou Linux Group</a>
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">湖南工业大学</a>
 						<div class="nav-collapse">
 							<ul class="nav">
 								<li class="active">
@@ -38,7 +38,7 @@
 							</ul>
 							<ul class="nav pull-right">
 								<li>
-									<a href="adminhistory.php"><?php echo $_SESSION["judger"];?></a>
+									<a href="adminhistory.php"><?php echo $_SESSION["judger"]; ?></a>
 								</li>
 								<li>
 									<a href="admin2014.php?action=logout">注销登录</a>
@@ -62,10 +62,10 @@
 								<a href="adminrecord.php"><i class="icon-th-list"></i> 报名记录
 								<span class="badge badge-info">
 								<?php
-								        $result = mysql_query("SELECT COUNT(*) FROM profile");
-								        $row = mysql_fetch_array($result);
-									echo $row[0];
-								?>
+$result = mysql_query("SELECT COUNT(*) FROM profile");
+$row = mysql_fetch_array($result);
+echo $row[0];
+?>
 								</span>
 								</a>
 							</li>
@@ -95,10 +95,10 @@
 				<div class="span9">
 					<div class="hero-unit">
 						<h1>
-							您好，<?php echo $_SESSION["judger"];?>
+							您好，<?php echo $_SESSION["judger"]; ?>
 						</h1>
 						<p>
-							欢迎进入西邮Linux兴趣小组 2014纳新面试系统
+							欢迎进入湖南工业大学 2017校赛管理系统
 						</p>
 						<p>
 							<a href="admininterview.php" class="btn btn-primary btn-large">开始面试评价</a> <a href="admin2014.php?action=logout" class="btn btn-large">注销登录</a>
@@ -109,35 +109,35 @@
 							<li>
 								<a href="adminrecord.php"><span class="count">
 								<?php
-									echo $row[0];
-								?>
+echo $row[0];
+?>
 								</span> 报名总数</a>
 							</li>
 							<li>
 								<span class="count">
 								<?php
-									$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 1");
-									$row = mysql_fetch_array($result);
-									echo $row[0];
-								?>
+$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 1");
+$row = mysql_fetch_array($result);
+echo $row[0];
+?>
 								</span> 一轮已面试
 							</li>
 							<li>
 								<span class="count">
 								<?php
-									$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 2");
-									$row = mysql_fetch_array($result);
-									echo $row[0];
-								?>
+$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 2");
+$row = mysql_fetch_array($result);
+echo $row[0];
+?>
 								</span> 二轮已面试
 							</li>
 							<li class="last">
 								<span class="count">
 								<?php
-									$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 3");
-									$row = mysql_fetch_array($result);
-									echo $row[0];
-								?>
+$result = mysql_query("SELECT COUNT(DISTINCT profileid) FROM record WHERE status = 3");
+$row = mysql_fetch_array($result);
+echo $row[0];
+?>
 								</span> 三轮已面试
 							</li>
 						</ul>
@@ -170,12 +170,11 @@
 						</thead>
 						<tbody>
 						<?php
-							$result = mysql_query("SELECT * FROM profile ORDER BY profileid DESC LIMIT 0,10");
-							while($row = mysql_fetch_array($result))
-							{
-								echo "<tr><td>".$row["profileid"]."</td><td>".$row["schoolnum"]."</td><td>".$row["name"]."</td><td>".$row["class"]."</td><td>".$row["tel"]."</td><td>".$status[$row["status"]]."</td></tr>\n";
-							}
-						?>
+$result = mysql_query("SELECT * FROM profile ORDER BY profileid DESC LIMIT 0,10");
+while ($row = mysql_fetch_array($result)) {
+    echo "<tr><td>" . $row["profileid"] . "</td><td>" . $row["schoolnum"] . "</td><td>" . $row["name"] . "</td><td>" . $row["class"] . "</td><td>" . $row["tel"] . "</td><td>" . $status[$row["status"]] . "</td></tr>\n";
+}
+?>
 						</tbody>
 					</table>
 					<ul class="pager">
